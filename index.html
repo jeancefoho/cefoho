@@ -1,0 +1,1396 @@
+<script>
+        // Données multilingues
+        const translations = {
+            fr: {
+                signupTitle: "🌍 Inscription Cefoho",
+                firstNameLabel: "Prénom *",
+                lastNameLabel: "Nom *",
+                phoneLabel: "📱 Numéro de téléphone *",
+                telegramLabel: "📱 Nom d'utilisateur Telegram",
+                telegramNote: "Si vous n'en avez pas, nous vous aiderons à en créer un",
+                servicesLabel: "🎯 Services qui vous intéressent *",
+                commerceService: "🛍️ Commerce universel",
+                voyageService: "✈️ Suivi de voyage",
+                emploiService: "👩🏽‍💼 Emploi & coaching",
+                paymentLabel: "💰 Méthode de paiement préférée",
+                termsText: "J'accepte les conditions d'utilisation et la politique de confidentialité",
+                joinTelegram: "Rejoindre sur Telegram",
+                supportText: "Besoin d'aide ? Contactez-nous sur",
+                pricingTitle: "Abonnement Simple",
+                accessTitle: "Accès Complet",
+                feature1: "Accès à tous les services",
+                feature2: "Groupes Telegram privés", 
+                feature3: "Support communautaire 24/7",
+                feature4: "Notifications personnalisées",
+                feature5: "Proposer vos propres services",
+                signupBtn: "S'inscrire Maintenant"
+            },
+            en: {
+                signupTitle: "🌍 Cefoho Registration",
+                firstNameLabel: "First Name *",
+                lastNameLabel: "Last Name *",
+                phoneLabel: "📱 Phone Number *",
+                telegramLabel: "📱 Telegram Username",
+                telegramNote: "If you don't have one, we'll help you create one",
+                servicesLabel: "🎯 Services you're interested in *",
+                commerceService: "🛍️ Universal Commerce",
+                voyageService: "✈️ Travel Tracking",
+                emploiService: "👩🏽‍💼 Jobs & Coaching",
+                paymentLabel: "💰 Preferred Payment Method",
+                termsText: "I accept the terms of use and privacy policy",
+                joinTelegram: "Join on Telegram",
+                supportText: "Need help? Contact us on",
+                pricingTitle: "Simple Subscription",
+                accessTitle: "Full Access",
+                feature1: "Access to all services",
+                feature2: "Private Telegram groups",
+                feature3: "24/7 community support",
+                feature4: "Personalized notifications",
+                feature5: "Propose your own services",
+                signupBtn: "Sign Up Now"
+            },
+            ar: {
+                signupTitle: "🌍 تسجيل سيفوهو",
+                firstNameLabel: "الاسم الأول *",
+                lastNameLabel: "اسم العائلة *",
+                phoneLabel: "📱 رقم الهاتف *",
+                telegramLabel: "📱 اسم المستخدم تليجرام",
+                telegramNote: "إذا لم يكن لديك واحد، سنساعدك في إنشاء واحد",
+                servicesLabel: "🎯 الخدمات التي تهمك *",
+                commerceService: "🛍️ التجارة الشاملة",
+                voyageService: "✈️ تتبع السفر",
+                emploiService: "👩🏽‍💼 الوظائف والتدريب",
+                paymentLabel: "💰 طريقة الدفع المفضلة",
+                termsText: "أوافق على شروط الاستخدام وسياسة الخصوصية",
+                joinTelegram: "انضم على تليجرام",
+                supportText: "تحتاج مساعدة؟ اتصل بنا على",
+                pricingTitle: "اشتراك بسيط",
+                accessTitle: "وصول كامل",
+                feature1: "الوصول لجميع الخدمات",
+                feature2: "مجموعات تليجرام خاصة",
+                feature3: "دعم المجتمع 24/7",
+                feature4: "إشعارات مخصصة",<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cefoho - Services Communautaires</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-blue: #1e90ff;
+            --accent-orange: #ff7f50;
+            --dark-navy: #0a1628;
+            --light-blue: #87ceeb;
+            --text-light: #ffffff;
+            --text-dark: #333333;
+            --gradient-bg: linear-gradient(135deg, #0a1628 0%, #1e3a8a 50%, #1e90ff 100%);
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--gradient-bg);
+            min-height: 100vh;
+            color: var(--text-light);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            padding: 20px 0;
+            position: relative;
+            z-index: 100;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(45deg, var(--primary-blue), var(--accent-orange));
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .logo-icon::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+            transform: rotate(45deg);
+            animation: shine 3s infinite;
+        }
+
+        @keyframes shine {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+
+        .logo h1 {
+            font-size: 2.5rem;
+            font-weight: bold;
+            background: linear-gradient(45deg, var(--primary-blue), var(--accent-orange));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-link:hover {
+            color: var(--accent-orange);
+            transform: translateY(-2px);
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent-orange);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 80px 0;
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h2 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, var(--text-light), var(--light-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 40px;
+            opacity: 0.9;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .telegram-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 15px;
+            background: linear-gradient(45deg, #0088cc, #229ed9);
+            color: white;
+            padding: 18px 35px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 25px rgba(0, 136, 204, 0.3);
+        }
+
+        .telegram-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(0, 136, 204, 0.4);
+        }
+
+        /* Services Section */
+        .services {
+            padding: 100px 0;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            margin: 50px 0;
+            border-radius: 30px;
+        }
+
+        .services h2 {
+            text-align: center;
+            font-size: 2.8rem;
+            margin-bottom: 60px;
+            color: var(--text-light);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+        }
+
+        .service-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.05), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .service-card:hover::before {
+            left: 100%;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, var(--primary-blue), var(--accent-orange));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--text-light);
+        }
+
+        .service-card p {
+            opacity: 0.8;
+            line-height: 1.6;
+        }
+
+        /* Pricing Section */
+        .pricing {
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .pricing h2 {
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+        }
+
+        .price-card {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+            backdrop-filter: blur(20px);
+            border-radius: 25px;
+            padding: 50px;
+            max-width: 500px;
+            margin: 40px auto;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .price-card::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, var(--primary-blue), var(--accent-orange), var(--primary-blue));
+            z-index: -1;
+            border-radius: 25px;
+            opacity: 0.5;
+        }
+
+        .price {
+            font-size: 3rem;
+            font-weight: bold;
+            color: var(--accent-orange);
+            margin: 20px 0;
+        }
+
+        .features {
+            list-style: none;
+            margin: 30px 0;
+        }
+
+        .features li {
+            padding: 10px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .features li i {
+            color: var(--accent-orange);
+        }
+
+        /* Admin Section */
+        .admin-panel {
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            padding: 40px;
+            margin: 50px 0;
+            display: none;
+        }
+
+        .admin-panel.active {
+            display: block;
+        }
+
+        .admin-header {
+            display: flex;
+            justify-content: between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .admin-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--accent-orange);
+        }
+
+        .btn {
+            background: linear-gradient(45deg, var(--primary-blue), var(--light-blue));
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin: 5px;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(30, 144, 255, 0.3);
+        }
+
+        .btn-danger {
+            background: linear-gradient(45deg, #ff4444, #cc0000);
+        }
+
+        .btn-success {
+            background: linear-gradient(45deg, #00cc44, #008822);
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+
+            .hero h2 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .service-card {
+                padding: 30px;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .service-card {
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        .service-card:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .service-card:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        /* Signup Modal */
+        .signup-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            overflow-y: auto;
+        }
+
+        .signup-modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .signup-content {
+            background: linear-gradient(135deg, var(--dark-navy), #1e3a8a);
+            border-radius: 20px;
+            width: 100%;
+            max-width: 600px;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .signup-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 30px 30px 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .signup-header h2 {
+            color: var(--text-light);
+            margin: 0;
+            font-size: 1.8rem;
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            color: var(--text-light);
+            font-size: 2rem;
+            cursor: pointer;
+            padding: 0;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .close-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: rotate(90deg);
+        }
+
+        .signup-form {
+            padding: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            color: var(--text-light);
+            font-weight: 600;
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--text-light);
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 0 3px rgba(30, 144, 255, 0.1);
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .phone-input {
+            display: flex;
+            gap: 10px;
+        }
+
+        .phone-input select {
+            min-width: 200px;
+        }
+
+        .telegram-input {
+            display: flex;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            padding: 0 15px;
+            transition: all 0.3s ease;
+        }
+
+        .telegram-input:focus-within {
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 0 3px rgba(30, 144, 255, 0.1);
+        }
+
+        .telegram-input span {
+            color: var(--primary-blue);
+            font-weight: bold;
+            margin-right: 5px;
+        }
+
+        .telegram-input input {
+            border: none;
+            background: none;
+            padding: 12px 0;
+            flex: 1;
+        }
+
+        .checkbox-group {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+            padding: 12px;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .checkbox-item:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .checkbox-item input[type="checkbox"] {
+            display: none;
+        }
+
+        .checkmark {
+            width: 20px;
+            height: 20px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            flex-shrink: 0;
+        }
+
+        .checkbox-item input[type="checkbox"]:checked + .checkmark {
+            background: var(--primary-blue);
+            border-color: var(--primary-blue);
+        }
+
+        .checkbox-item input[type="checkbox"]:checked + .checkmark::after {
+            content: '✓';
+            color: white;
+            font-weight: bold;
+        }
+
+        .payment-methods {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+        }
+
+        .payment-option {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .payment-option:hover {
+            border-color: var(--primary-blue);
+            background: rgba(30, 144, 255, 0.1);
+        }
+
+        .payment-option.selected {
+            border-color: var(--primary-blue);
+            background: rgba(30, 144, 255, 0.2);
+        }
+
+        .payment-option input[type="radio"] {
+            display: none;
+        }
+
+        .payment-icon {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        .price-info {
+            margin-top: 15px;
+            padding: 15px;
+            background: rgba(255, 127, 80, 0.1);
+            border-radius: 10px;
+            text-align: center;
+            border-left: 4px solid var(--accent-orange);
+        }
+
+        .submit-btn {
+            width: 100%;
+            background: linear-gradient(45deg, var(--primary-blue), var(--light-blue));
+            color: white;
+            border: none;
+            padding: 18px 25px;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 30px;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(30, 144, 255, 0.3);
+        }
+
+        .signup-footer {
+            text-align: center;
+            padding: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .signup-footer a {
+            color: var(--primary-blue);
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 10px;
+        }
+
+        /* Success Modal */
+        .success-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(15px);
+            z-index: 1001;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .success-content {
+            background: linear-gradient(135deg, var(--dark-navy), #1e3a8a);
+            border-radius: 20px;
+            padding: 50px;
+            text-align: center;
+            max-width: 500px;
+            margin: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .success-icon {
+            font-size: 4rem;
+            color: #00ff88;
+            margin-bottom: 30px;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .signup-content {
+                margin: 10px;
+                max-height: 95vh;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .phone-input {
+                flex-direction: column;
+            }
+
+            .phone-input select {
+                min-width: auto;
+            }
+
+            .payment-methods {
+                grid-template-columns: 1fr;
+            }
+
+            .signup-header,
+            .signup-form,
+            .signup-footer {
+                padding: 20px;
+            }
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 40px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: 50px;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav class="nav-container">
+                <div class="logo">
+                    <div class="logo-icon">
+                        <i class="fas fa-bullhorn"></i>
+                    </div>
+                    <h1>CEFOHO</h1>
+                </div>
+                <div class="nav-menu">
+                    <a href="#services" class="nav-link">Services</a>
+                    <a href="#pricing" class="nav-link">Tarifs</a>
+                    <a href="#" class="nav-link" onclick="toggleAdmin()">Admin</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h2>Services Communautaires Connectés</h2>
+                    <p>Rejoignez notre communauté Telegram pour accéder au commerce groupé, aux voyages organisés et aux opportunités d'emploi. Tout à 1000 FCFA/mois !</p>
+                    <a href="https://t.me/cefohoserviceacces" class="telegram-btn" target="_blank">
+                        <i class="fab fa-telegram-plane"></i>
+                        Rejoindre sur Telegram
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section class="services" id="services">
+            <div class="container">
+                <h2>Nos Services</h2>
+                <div class="services-grid">
+                    <div class="service-card">
+                        <div class="service-icon">🛍️</div>
+                        <h3>Commerce Universel</h3>
+                        <p>Achats groupés, importation collective, réductions négociées. Économisez en achetant ensemble et accédez à des produits importés à prix préférentiels.</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">✈️</div>
+                        <h3>Suivi de Voyage</h3>
+                        <p>Organisation de voyages collectifs, partage des coûts, entraide entre voyageurs. Voyagez malin et économique avec notre communauté.</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">👩🏽‍💼</div>
+                        <h3>Emploi & Coaching</h3>
+                        <p>Offres d'emploi exclusives, sessions de coaching, développement professionnel. Boostez votre carrière avec notre réseau d'experts.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="pricing" id="pricing">
+            <div class="container">
+                <h2 id="pricingTitle">Abonnement Simple</h2>
+                <div class="price-card">
+                    <h3 id="accessTitle">Accès Complet</h3>
+                    <div class="price" id="priceDisplay">1000 FCFA<span style="font-size: 1rem;">/mois</span></div>
+                    <ul class="features">
+                        <li><i class="fas fa-check"></i> <span id="feature1">Accès à tous les services</span></li>
+                        <li><i class="fas fa-check"></i> <span id="feature2">Groupes Telegram privés</span></li>
+                        <li><i class="fas fa-check"></i> <span id="feature3">Support communautaire 24/7</span></li>
+                        <li><i class="fas fa-check"></i> <span id="feature4">Notifications personnalisées</span></li>
+                        <li><i class="fas fa-check"></i> <span id="feature5">Proposer vos propres services</span></li>
+                    </ul>
+                    <button class="telegram-btn" onclick="openSignupForm()" style="margin-top: 30px;">
+                        <i class="fas fa-user-plus"></i>
+                        <span id="signupBtn">S'inscrire Maintenant</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Formulaire d'inscription -->
+        <div class="signup-modal" id="signupModal">
+            <div class="signup-content">
+                <div class="signup-header">
+                    <h2 id="signupTitle">🌍 Inscription Cefoho</h2>
+                    <button class="close-btn" onclick="closeSignupForm()">&times;</button>
+                </div>
+                
+                <form class="signup-form" onsubmit="handleSignup(event)">
+                    <!-- Sélection de langue -->
+                    <div class="form-group">
+                        <label for="language">🌐 Langue / Language / لغة</label>
+                        <select id="language" onchange="changeLanguage(this.value)" required>
+                            <option value="fr">🇫🇷 Français</option>
+                            <option value="en">🇬🇧 English</option>
+                            <option value="ar">🇸🇦 العربية</option>
+                            <option value="pt">🇵🇹 Português</option>
+                            <option value="sw">🇹🇿 Kiswahili</option>
+                        </select>
+                    </div>
+
+                    <!-- Informations personnelles -->
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="firstName" id="firstNameLabel">Prénom *</label>
+                            <input type="text" id="firstName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="lastName" id="lastNameLabel">Nom *</label>
+                            <input type="text" id="lastName" required>
+                        </div>
+                    </div>
+
+                    <!-- Contact -->
+                    <div class="form-group">
+                        <label for="phone" id="phoneLabel">📱 Numéro de téléphone *</label>
+                        <div class="phone-input">
+                            <select id="countryCode" onchange="updatePaymentMethods()">
+                                <!-- Afrique de l'Ouest -->
+                                <optgroup label="🌍 Afrique de l'Ouest">
+                                    <option value="+229" data-country="BJ" data-currency="FCFA" data-payments="moov,mtn">🇧🇯 Bénin (+229)</option>
+                                    <option value="+226" data-country="BF" data-currency="FCFA" data-payments="orange,moov">🇧🇫 Burkina Faso (+226)</option>
+                                    <option value="+225" data-country="CI" data-currency="FCFA" data-payments="orange,mtn,moov">🇨🇮 Côte d'Ivoire (+225)</option>
+                                    <option value="+233" data-country="GH" data-currency="GHS" data-payments="mtn,vodafone,airteltigo">🇬🇭 Ghana (+233)</option>
+                                    <option value="+224" data-country="GN" data-currency="GNF" data-payments="orange,mtn">🇬🇳 Guinée (+224)</option>
+                                    <option value="+223" data-country="ML" data-currency="FCFA" data-payments="orange,malitel">🇲🇱 Mali (+223)</option>
+                                    <option value="+227" data-country="NE" data-currency="FCFA" data-payments="orange,airtel">🇳🇪 Niger (+227)</option>
+                                    <option value="+234" data-country="NG" data-currency="NGN" data-payments="mtn,airtel,glo,9mobile">🇳🇬 Nigeria (+234)</option>
+                                    <option value="+221" data-country="SN" data-currency="FCFA" data-payments="orange,free,expresso">🇸🇳 Sénégal (+221)</option>
+                                    <option value="+228" data-country="TG" data-currency="FCFA" data-payments="togocel,moov">🇹🇬 Togo (+228)</option>
+                                </optgroup>
+                                
+                                <!-- Afrique Centrale -->
+                                <optgroup label="🌍 Afrique Centrale">
+                                    <option value="+237" data-country="CM" data-currency="FCFA" data-payments="orange,mtn">🇨🇲 Cameroun (+237)</option>
+                                    <option value="+236" data-country="CF" data-currency="FCFA" data-payments="orange,telecel">🇨🇫 Centrafrique (+236)</option>
+                                    <option value="+235" data-country="TD" data-currency="FCFA" data-payments="airtel,tigo">🇹🇩 Tchad (+235)</option>
+                                    <option value="+242" data-country="CG" data-currency="FCFA" data-payments="airtel,mtn">🇨🇬 Congo (+242)</option>
+                                    <option value="+243" data-country="CD" data-currency="CDF" data-payments="vodacom,airtel,orange">🇨🇩 RD Congo (+243)</option>
+                                    <option value="+241" data-country="GA" data-currency="FCFA" data-payments="airtel,moov">🇬🇦 Gabon (+241)</option>
+                                </optgroup>
+
+                                <!-- Afrique de l'Est -->
+                                <optgroup label="🌍 Afrique de l'Est">
+                                    <option value="+251" data-country="ET" data-currency="ETB" data-payments="telebirr,cbepay">🇪🇹 Éthiopie (+251)</option>
+                                    <option value="+254" data-country="KE" data-currency="KES" data-payments="mpesa,airtel">🇰🇪 Kenya (+254)</option>
+                                    <option value="+250" data-country="RW" data-currency="RWF" data-payments="mtn,airtel,tigo">🇷🇼 Rwanda (+250)</option>
+                                    <option value="+255" data-country="TZ" data-currency="TZS" data-payments="vodacom,airtel,tigo">🇹🇿 Tanzanie (+255)</option>
+                                    <option value="+256" data-country="UG" data-currency="UGX" data-payments="mtn,airtel">🇺🇬 Ouganda (+256)</option>
+                                </optgroup>
+
+                                <!-- Afrique du Nord -->
+                                <optgroup label="🌍 Afrique du Nord">
+                                    <option value="+213" data-country="DZ" data-currency="DZD" data-payments="mobilis,djezzy,ooredoo">🇩🇿 Algérie (+213)</option>
+                                    <option value="+20" data-country="EG" data-currency="EGP" data-payments="vodafone,orange,etisalat">🇪🇬 Égypte (+20)</option>
+                                    <option value="+218" data-country="LY" data-currency="LYD" data-payments="libyana,almadar">🇱🇾 Libye (+218)</option>
+                                    <option value="+212" data-country="MA" data-currency="MAD" data-payments="orange,inwi,iam">🇲🇦 Maroc (+212)</option>
+                                    <option value="+216" data-country="TN" data-currency="TND" data-payments="orange,ooredoo,tunisie-telecom">🇹🇳 Tunisie (+216)</option>
+                                </optgroup>
+
+                                <!-- Afrique Australe -->
+                                <optgroup label="🌍 Afrique Australe">
+                                    <option value="+267" data-country="BW" data-currency="BWP" data-payments="orange,mascom,btc">🇧🇼 Botswana (+267)</option>
+                                    <option value="+27" data-country="ZA" data-currency="ZAR" data-payments="vodacom,mtn,cellc,telkom">🇿🇦 Afrique du Sud (+27)</option>
+                                    <option value="+260" data-country="ZM" data-currency="ZMW" data-payments="mtn,airtel,zamtel">🇿🇲 Zambie (+260)</option>
+                                    <option value="+263" data-country="ZW" data-currency="USD" data-payments="econet,netone,telecel">🇿🇼 Zimbabwe (+263)</option>
+                                </optgroup>
+                            </select>
+                            <input type="tel" id="phone" placeholder="XX XXX XXX" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="telegram" id="telegramLabel">📱 Nom d'utilisateur Telegram</label>
+                        <div class="telegram-input">
+                            <span>@</span>
+                            <input type="text" id="telegram" placeholder="votre_nom">
+                        </div>
+                        <small id="telegramNote">Si vous n'en avez pas, nous vous aiderons à en créer un</small>
+                    </div>
+
+                    <!-- Services d'intérêt -->
+                    <div class="form-group">
+                        <label id="servicesLabel">🎯 Services qui vous intéressent *</label>
+                        <div class="checkbox-group">
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="services" value="commerce">
+                                <span class="checkmark"></span>
+                                <span id="commerceService">🛍️ Commerce universel</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="services" value="voyage">
+                                <span class="checkmark"></span>
+                                <span id="voyageService">✈️ Suivi de voyage</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="services" value="emploi">
+                                <span class="checkmark"></span>
+                                <span id="emploiService">👩🏽‍💼 Emploi & coaching</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Méthode de paiement -->
+                    <div class="form-group">
+                        <label id="paymentLabel">💰 Méthode de paiement préférée</label>
+                        <div id="paymentMethods" class="payment-methods">
+                            <!-- Sera rempli dynamiquement selon le pays -->
+                        </div>
+                        <div class="price-info">
+                            <span id="priceInfo">Prix: <strong id="localPrice">1000 FCFA</strong>/mois</span>
+                        </div>
+                    </div>
+
+                    <!-- Conditions -->
+                    <div class="form-group">
+                        <label class="checkbox-item">
+                            <input type="checkbox" id="terms" required>
+                            <span class="checkmark"></span>
+                            <span id="termsText">J'accepte les conditions d'utilisation et la politique de confidentialité</span>
+                        </label>
+                    </div>
+
+                    <button type="submit" class="submit-btn">
+                        <i class="fab fa-telegram-plane"></i>
+                        <span id="joinTelegram">Rejoindre sur Telegram</span>
+                    </button>
+                </form>
+
+                <div class="signup-footer">
+                    <p id="supportText">Besoin d'aide ? Contactez-nous sur</p>
+                    <a href="https://t.me/cefohoserviceacces" target="_blank">
+                        <i class="fab fa-telegram-plane"></i> @cefohoserviceacces
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Admin Panel -->
+        <section class="admin-panel" id="adminPanel">
+            <div class="container">
+                <div class="admin-header">
+                    <h2>Panneau Administrateur</h2>
+                    <button class="btn btn-danger" onclick="toggleAdmin()">Fermer</button>
+                </div>
+                
+                <div class="admin-stats">
+                    <div class="stat-card">
+                        <div class="stat-number" id="totalUsers">247</div>
+                        <div>Utilisateurs Actifs</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="totalRevenue">247,000</div>
+                        <div>Revenus (FCFA)</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="pendingServices">12</div>
+                        <div>Services en Attente</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="activeServices">38</div>
+                        <div>Services Actifs</div>
+                    </div>
+                </div>
+
+                <div style="background: rgba(255,255,255,0.05); border-radius: 15px; padding: 30px; margin: 20px 0;">
+                    <h3>Services Proposés en Attente</h3>
+                    <div id="pendingServicesList">
+                        <div style="display: flex; justify-content: space-between; align-items: center; padding: 15px; margin: 10px 0; background: rgba(255,255,255,0.1); border-radius: 10px;">
+                            <div>
+                                <strong>Cours de Cuisine Collective</strong><br>
+                                <small>Proposé par @marie_chef - Commerce</small>
+                            </div>
+                            <div>
+                                <button class="btn btn-success" onclick="approveService(this)">Approuver</button>
+                                <button class="btn btn-danger" onclick="rejectService(this)">Rejeter</button>
+                            </div>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; align-items: center; padding: 15px; margin: 10px 0; background: rgba(255,255,255,0.1); border-radius: 10px;">
+                            <div>
+                                <strong>Voyage Groupe Marrakech</strong><br>
+                                <small>Proposé par @travel_expert - Voyage</small>
+                            </div>
+                            <div>
+                                <button class="btn btn-success" onclick="approveService(this)">Approuver</button>
+                                <button class="btn btn-danger" onclick="rejectService(this)">Rejeter</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="background: rgba(255,255,255,0.05); border-radius: 15px; padding: 30px; margin: 20px 0;">
+                    <h3>Actions Rapides</h3>
+                    <button class="btn" onclick="sendNotification()">📢 Envoyer Notification</button>
+                    <button class="btn" onclick="exportData()">📊 Exporter Données</button>
+                    <button class="btn" onclick="managePayments()">💰 Gérer Paiements</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div>
+                    <p>&copy; 2025 Cefoho. Tous droits réservés.</p>
+                </div>
+                <div>
+                    <a href="https://t.me/cefohoserviceacces" style="color: var(--accent-orange); text-decoration: none;">
+                        <i class="fab fa-telegram-plane"></i> @cefohoserviceacces
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Simulation de données en temps réel
+        let userData = {
+            totalUsers: 247,
+            totalRevenue: 247000,
+            pendingServices: 12,
+            activeServices: 38
+        };
+
+        // Toggle Admin Panel
+        function toggleAdmin() {
+            const adminPanel = document.getElementById('adminPanel');
+            adminPanel.classList.toggle('active');
+            
+            if (adminPanel.classList.contains('active')) {
+                updateAdminStats();
+            }
+        }
+
+        // Mettre à jour les statistiques admin
+        function updateAdminStats() {
+            document.getElementById('totalUsers').textContent = userData.totalUsers;
+            document.getElementById('totalRevenue').textContent = userData.totalRevenue.toLocaleString();
+            document.getElementById('pendingServices').textContent = userData.pendingServices;
+            document.getElementById('activeServices').textContent = userData.activeServices;
+        }
+
+        // Approuver un service
+        function approveService(button) {
+            const serviceDiv = button.closest('div').parentElement;
+            serviceDiv.style.background = 'rgba(0, 255, 0, 0.1)';
+            serviceDiv.innerHTML = '<div style="text-align: center; color: #00ff00; font-weight: bold;">✅ Service Approuvé et Ajouté aux Groupes Telegram</div>';
+            
+            userData.pendingServices--;
+            userData.activeServices++;
+            updateAdminStats();
+            
+            // Simulation d'envoi de notification Telegram
+            setTimeout(() => {
+                alert('🤖 Notification Telegram envoyée :\n"Nouveau service approuvé ! Cours de Cuisine Collective maintenant disponible dans le groupe Commerce."');
+            }, 1000);
+        }
+
+        // Rejeter un service
+        function rejectService(button) {
+            const serviceDiv = button.closest('div').parentElement;
+            serviceDiv.style.background = 'rgba(255, 0, 0, 0.1)';
+            serviceDiv.innerHTML = '<div style="text-align: center; color: #ff0000; font-weight: bold;">❌ Service Rejeté</div>';
+            
+            userData.pendingServices--;
+            updateAdminStats();
+        }
+
+        // Envoyer notification
+        function sendNotification() {
+            const message = prompt('Message à envoyer à tous les abonnés Telegram :');
+            if (message) {
+                alert(`🤖 Notification envoyée à ${userData.totalUsers} utilisateurs :\n"${message}"`);
+            }
+        }
+
+        // Exporter données
+        function exportData() {
+            const data = `
+RAPPORT CEFOHO - ${new Date().toLocaleDateString()}
+
+📊 STATISTIQUES:
+- Utilisateurs actifs: ${userData.totalUsers}
+- Revenus totaux: ${userData.totalRevenue.toLocaleString()} FCFA
+- Services en attente: ${userData.pendingServices}
+- Services actifs: ${userData.activeServices}
+
+💰 PAIEMENTS:
+- Taux de conversion: 87%
+- Abonnements mensuels: ${userData.totalUsers}
+- Revenus moyens/utilisateur: ${Math.round(userData.totalRevenue/userData.totalUsers)} FCFA
+
+🚀 CROISSANCE:
+- Nouveaux utilisateurs (30j): +45
+- Croissance mensuelle: +22%
+            `;
+            
+            alert('📄 Données exportées !\n\n' + data);
+        }
+
+        // Gérer paiements
+        function managePayments() {
+            alert(`💰 GESTION DES PAIEMENTS
+            
+✅ Paiements validés: 231
+⏳ En attente de validation: 16
+❌ Paiements rejetés: 8
+
+Prochaines actions:
+- Valider 16 paiements MoMo/Flooz
+- Envoyer rappels aux 23 utilisateurs en retard
+- Mettre à jour les accès Telegram`);
+        }
+
+        // Animation du compteur au chargement
+        function animateCounters() {
+            const counters = document.querySelectorAll('.stat-number');
+            counters.forEach(counter => {
+                const target = parseInt(counter.textContent);
+                const duration = 2000;
+                const step = target / (duration / 16);
+                let current = 0;
+                
+                const timer = setInterval(() => {
+                    current += step;
+                    counter.textContent = Math.floor(current);
+                    
+                    if (current >= target) {
+                        counter.textContent = target;
+                        clearInterval(timer);
+                    }
+                }, 16);
+            });
+        }
+
+        // Smooth scroll pour les liens de navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Mise à jour automatique des stats (simulation)
+        setInterval(() => {
+            if (Math.random() > 0.7) {
+                userData.totalUsers += Math.floor(Math.random() * 3);
+                userData.totalRevenue += 1000;
+                if (document.getElementById('adminPanel').classList.contains('active')) {
+                    updateAdminStats();
+                }
+            }
+        }, 10000);
+
+        // Effets de particules pour le background
+        function createParticles() {
+            const particleCount = 50;
+            const particles = [];
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.style.cssText = `
+                    position: absolute;
+                    width: 2px;
+                    height: 2px;
+                    background: rgba(30, 144, 255, 0.3);
+                    border-radius: 50%;
+                    pointer-events: none;
+                    z-index: 1;
+                `;
+                document.body.appendChild(particle);
+                
+                particles.push({
+                    element: particle,
+                    x: Math.random() * window.innerWidth,
+                    y: Math.random() * window.innerHeight,
+                    vx: (Math.random() - 0.5) * 0.5,
+                    vy: (Math.random() - 0.5) * 0.5
+                });
+            }
+            
+            function animateParticles() {
+                particles.forEach(particle => {
+                    particle.x += particle.vx;
+                    particle.y += particle.vy;
+                    
+                    if (particle.x < 0 || particle.x > window.innerWidth) particle.vx *= -1;
+                    if (particle.y < 0 || particle.y > window.innerHeight) particle.vy *= -1;
+                    
+                    particle.element.style.left = particle.x + 'px';
+                    particle.element.style.top = particle.y + 'px';
+                });
+                
+                requestAnimationFrame(animateParticles);
+            }
+            
+            animateParticles();
+        }
+
+        // Initialisation
+        document.addEventListener('DOMContentLoaded', () => {
+            createParticles();
+            setTimeout(animateCounters, 500);
+        });
+    </script>
+</body>
+</html>
